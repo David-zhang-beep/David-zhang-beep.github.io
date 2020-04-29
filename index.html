@@ -152,6 +152,389 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux常用命令</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="archive-article-date">
+  	<time datetime="2020-04-29T03:50:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-ls</td>
+<td>显示文件或目录</td>
+<td>-l</td>
+<td>列出文件详细信息</td>
+</tr>
+<tr>
+<td>-a</td>
+<td>列出当前目录下所有文件及目录，包括隐藏的</td>
+<td>mkdir</td>
+<td>创建目录</td>
+</tr>
+<tr>
+<td>-p</td>
+<td>创建目录，若无父目录，则创建parent</td>
+<td>cd</td>
+<td>切换目录</td>
+</tr>
+<tr>
+<td>touch</td>
+<td>创建空文件</td>
+<td>echo</td>
+<td>创建带有内容的文件</td>
+</tr>
+<tr>
+<td>cat</td>
+<td>查看文件内容</td>
+<td>cp</td>
+<td>拷贝</td>
+</tr>
+<tr>
+<td>mv</td>
+<td>移动或重命名</td>
+<td>rm</td>
+<td>删除文件</td>
+</tr>
+<tr>
+<td>-r</td>
+<td>递归删除，可删除子目录及文件</td>
+<td>-f</td>
+<td>强制删除</td>
+</tr>
+<tr>
+<td>find</td>
+<td>在文件系统中搜索某文件</td>
+<td>wc</td>
+<td>统计文本中的行数，字数，字符数</td>
+</tr>
+<tr>
+<td>grep</td>
+<td>在文本文件中查找某个字符串</td>
+<td>rmdir</td>
+<td>删除空目录</td>
+</tr>
+<tr>
+<td>tree</td>
+<td>树形结构显示目录，需要安装tree包</td>
+<td>pwd</td>
+<td>显示当前目录</td>
+</tr>
+<tr>
+<td>ln</td>
+<td>创建链接文件</td>
+<td>more，less</td>
+<td>分页显示文本文件内容</td>
+</tr>
+<tr>
+<td>head,tail</td>
+<td>显示文件头，尾内容</td>
+<td>ctrl+alt+F1</td>
+<td>命令行全屏模式</td>
+</tr>
+</tbody></table>
+<h2 id="系统管理命令"><a href="#系统管理命令" class="headerlink" title="系统管理命令"></a>系统管理命令</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>stat</td>
+<td>显示指定文件的详细信息，比ls更详细</td>
+<td>who</td>
+<td>显示在线登录用户</td>
+</tr>
+<tr>
+<td>whoami</td>
+<td>显示当前操作用户</td>
+<td>hostname</td>
+<td>显示主机名</td>
+</tr>
+<tr>
+<td>uname</td>
+<td>显示系统信息</td>
+<td>top</td>
+<td>动态显示当前耗费资源最多进程信息</td>
+</tr>
+<tr>
+<td>ps</td>
+<td>显示瞬间进程状态ps -aux</td>
+<td>du</td>
+<td>查看目录大小du -h /home 带有单位显示目录信息</td>
+</tr>
+<tr>
+<td>df</td>
+<td>查看磁盘大小 df -h带有单位显示磁盘信息</td>
+<td>ifconfig</td>
+<td>查看网络情况</td>
+</tr>
+<tr>
+<td>ping</td>
+<td>测试网络连通</td>
+<td>netstat</td>
+<td>显示网络状态信息</td>
+</tr>
+<tr>
+<td>man</td>
+<td>在手册中搜索帮助</td>
+<td>clear</td>
+<td>清屏</td>
+</tr>
+<tr>
+<td>alias</td>
+<td>对命令重命名如 alias showmeit = “ps-aux”,解除使用unalis</td>
+<td>kill</td>
+<td>杀死进程，可以先使用ps或top命令查看进程的id，然后再用kill命令杀死进程</td>
+</tr>
+</tbody></table>
+<h2 id="打包压缩相关命令"><a href="#打包压缩相关命令" class="headerlink" title="打包压缩相关命令"></a>打包压缩相关命令</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gzip</td>
+<td>压缩文件，后文件有.zip扩展名</td>
+<td>bzip2</td>
+<td>创建和管理.bz2格式的压缩包</td>
+</tr>
+<tr>
+<td>tar</td>
+<td>打包压缩：-c 归档文件；-x解压缩文件;-z gzip压缩文件；-j bzip2压缩文件；-v 显示压缩或解压缩过程；-f 使用档名</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>例：</p>
+<p>tar -cvf /home/abc.tar /home/abc                  只打包，不压缩</p>
+<p>tar -zcvf /home/abc.tar.gz /home/abc           打包，并用 gzip 压缩</p>
+<p>tar -jcvf /home/abc.tar.bz2 /home/abc         打包，并用 bzip2 压缩</p>
+<p>tar -jxvf /home/abc.tar.bz2 /home/abc         解压缩</p>
+<h2 id="关机-重启机器"><a href="#关机-重启机器" class="headerlink" title="关机/重启机器"></a>关机/重启机器</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-r</td>
+<td>关机重启</td>
+<td>-h</td>
+<td>关机不重启</td>
+</tr>
+<tr>
+<td>now</td>
+<td>立刻关机</td>
+<td>halt</td>
+<td>关机</td>
+</tr>
+<tr>
+<td>reboot</td>
+<td>重启</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="Linux软件包管理"><a href="#Linux软件包管理" class="headerlink" title="Linux软件包管理"></a>Linux软件包管理</h2><h3 id="DPKG-Debian-Package-管理工具"><a href="#DPKG-Debian-Package-管理工具" class="headerlink" title="DPKG (Debian Package)管理工具"></a>DPKG (Debian Package)管理工具</h3><p>软件包名以.deb后缀。这种方法适合系统不能联网的情况下。</p>
+<p>比如安装tree命令的安装包，先将tree.deb传到Linux系统中。再使用如下命令安装。</p>
+<p>sudo dpkg -i tree_1.5.3-1_i386.deb 安装软件</p>
+<p>sudo dpkg -r tree 卸载软件</p>
+<p>注：将tree.deb传到Linux系统中，有多种方式。VMwareTool，使用挂载方式；使用winSCP工具等；</p>
+<h3 id="APT（Advanced-Packaging-Tool）高级软件工具"><a href="#APT（Advanced-Packaging-Tool）高级软件工具" class="headerlink" title="APT（Advanced Packaging Tool）高级软件工具"></a>APT（Advanced Packaging Tool）高级软件工具</h3><p>这种方法适合系统能够连接互联网的情况。</p>
+<p>依然以tree为例</p>
+<p>sudo apt-get install tree 安装tree</p>
+<p>sudo apt-get remove tree 卸载tree</p>
+<p>sudo apt-get update 更新软件</p>
+<p>sudo apt-get upgrade</p>
+<p>将.rpm文件转为.deb文件</p>
+<p>.rpm为RedHat使用的软件格式。在Ubuntu下不能直接使用，所以需要转换一下。</p>
+<p>sudo alien abc.rpm</p>
+<h2 id="vim-使用"><a href="#vim-使用" class="headerlink" title="vim 使用"></a>vim 使用</h2><p>vim三种模式：命令模式、插入模式、编辑模式。使用ESC或i或：来切换模式。</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>:q</td>
+<td>退出</td>
+<td>:q!</td>
+<td>强制退出</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>保存并退出</td>
+<td>:set number</td>
+<td>显示行号</td>
+</tr>
+<tr>
+<td>:set nonumber</td>
+<td>隐蔽行号</td>
+<td>/apache</td>
+<td>在文档中查找apache，按n跳到下一个，shift+n上一个</td>
+</tr>
+<tr>
+<td>yyp</td>
+<td>复制光标所在行，并粘贴</td>
+<td>h,j,k,l</td>
+<td>左移一个字符，下一行,上一行,右移一个字符</td>
+</tr>
+</tbody></table>
+<h2 id="用户及用户组管理"><a href="#用户及用户组管理" class="headerlink" title="用户及用户组管理"></a>用户及用户组管理</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>功能</th>
+<th>指令</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/etc/passwd</td>
+<td>存储用户账号</td>
+<td>/etc/group</td>
+<td>存储组账号</td>
+</tr>
+<tr>
+<td>/etc/shadow</td>
+<td>存储用户账号的密码</td>
+<td>/etc/gshadow</td>
+<td>存储用户组账号的密码</td>
+</tr>
+<tr>
+<td>useradd</td>
+<td>用户名</td>
+<td>userdel</td>
+<td>用户名</td>
+</tr>
+<tr>
+<td>adduser</td>
+<td>用户名</td>
+<td>groupadd</td>
+<td>组名</td>
+</tr>
+<tr>
+<td>groupdel</td>
+<td>组名</td>
+<td>passwd root</td>
+<td>给root设置密码</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>/etc/profile</td>
+<td>系统环境变量</td>
+<td>bash_profile</td>
+<td>用户环境变量</td>
+</tr>
+<tr>
+<td>.bashrc</td>
+<td>用户环境变量</td>
+<td>su user</td>
+<td>切换用户，加载配置文件.bashrc</td>
+</tr>
+<tr>
+<td>su - user</td>
+<td>切换用户，加载配置文件/etc/profile ，加载bash_profile</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>原文链接：<a href="https://blog.csdn.net/qq_40910541/article/details/80686362" target="_blank" rel="noopener">https://blog.csdn.net/qq_40910541/article/details/80686362</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux 操作指令</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">展开全文 >></a>
+        </p>
+      
+    
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-青客空间来了！" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -598,6 +981,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">微信公众号</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux 操作指令</a>
               </li>
             
             <div class="clearfix"></div>
