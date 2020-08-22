@@ -77,7 +77,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="/David-zhang-beep.github.io" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
@@ -118,7 +118,7 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="/David-zhang-beep.github.io" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
@@ -152,6 +152,136 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-C-异常处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/22/C-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">C++异常处理</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/22/C-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="archive-article-date">
+  	<time datetime="2020-08-22T00:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-22</time>
+</a>
+        
+      </header>
+    
+      <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->  
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="C-标准异常类"><a href="#C-标准异常类" class="headerlink" title="C++标准异常类"></a>C++标准异常类</h2><p>1 基类 exception</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">exception</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">   exception() <span class="keyword">throw</span>();</span><br><span class="line">   exception(<span class="keyword">const</span> exception&amp; rhs) <span class="keyword">throw</span>();</span><br><span class="line">   exception&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> exception&amp; rhs) <span class="keyword">throw</span>();</span><br><span class="line">   <span class="keyword">virtual</span> ~exception() <span class="keyword">throw</span>();</span><br><span class="line">   <span class="function"><span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keyword">char</span> *<span class="title">what</span><span class="params">()</span> <span class="keyword">const</span> <span class="title">throw</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>2 下设两个派生异常类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">logic_erro   <span class="comment">// 报告程序的逻辑错误，可在程序执行前被检测到.</span></span><br><span class="line">    <span class="comment">//再次派生</span></span><br><span class="line">    domain_error           <span class="comment">//报告违反了前置条件</span></span><br><span class="line"></span><br><span class="line">    invalid_argument      <span class="comment">// 指出函数的一个无效参数</span></span><br><span class="line"></span><br><span class="line">    length_error 　　　　　　<span class="comment">//指出有一个产生超过NPOS长度的对象的企图（NPOS为size_t的最大可表现值</span></span><br><span class="line"></span><br><span class="line">    out_of_range 　　　　　　<span class="comment">//报告参数越界</span></span><br><span class="line"></span><br><span class="line">    bad_cast               <span class="comment">//在运行时类型识别中有一个无效的dynamic_cast表达式</span></span><br><span class="line"></span><br><span class="line">    bad_typeid 　　　　　　　<span class="comment">//报告在表达式typeid(*p)中有一个空指针P</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"> </span><br><span class="line">runtime_erro <span class="comment">//  报告程序运行时的错误，只有在运行的时候才能检测到.</span></span><br><span class="line">    <span class="comment">//再次派生</span></span><br><span class="line">    range_error　　　　<span class="comment">// 报告违反了后置条件</span></span><br><span class="line"></span><br><span class="line">    overflow_error 　　<span class="comment">//报告一个算术溢出</span></span><br><span class="line"></span><br><span class="line">    bad_alloc        <span class="comment">//  报告一个存储分配错误</span></span><br></pre></td></tr></table></figure>
+
+<p>3 智能指针如何解决内存泄漏</p>
+<p>现有如下程序：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">processAdoptions</span><span class="params">(istream&amp; dataSource)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">while</span>(dataSource)</span><br><span class="line">     &#123;</span><br><span class="line">           ALA *pa = readALA(dataSource); <span class="comment">//得到下一个动物</span></span><br><span class="line">           pa-&gt;processAdoption(); <span class="comment">//处理收容动物</span></span><br><span class="line">           <span class="keyword">delete</span> pa; <span class="comment">//删除readALA返回的对象</span></span><br><span class="line">     &#125;　　　　　　　　　　　　　　　　　</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果<code>pa-&gt;processAdoption</code>抛出了一个异常，<code>processAdoption</code>没有捕获异常，异常会向调用者传递，该语句后的语句将被跳过，<code>pa</code>将不被删除，从而导致内存泄漏。</p>
+<p>解决方法 1：try catch</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">processAdoptions</span><span class="params">(istream&amp; dataSource)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">     <span class="keyword">while</span>(dataSource)</span><br><span class="line">     &#123;</span><br><span class="line">           ALA *pa = readALA(dataSource);</span><br><span class="line">           <span class="keyword">try</span></span><br><span class="line">           &#123;</span><br><span class="line">                 pa-&gt;processAdoption();</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">catch</span>(...)</span><br><span class="line">           &#123;</span><br><span class="line">                 　　　　　　　<span class="comment">// 捕获所有异常</span></span><br><span class="line">                 <span class="keyword">delete</span> pa; 　　　　　　　 <span class="comment">// 避免内存泄漏</span></span><br><span class="line">                 　　　　　　　　　　　　　　 <span class="comment">// 当异常抛出时</span></span><br><span class="line">                 <span class="keyword">throw</span>; 　　　　　　　　　 <span class="comment">// 传送异常给调用者</span></span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">delete</span> pa; 　　　　　　　　 <span class="comment">// 避免资源泄漏</span></span><br><span class="line">     &#125;　　　　　　　　　　　　　 <span class="comment">// 当没有异常抛出时</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样操作出现了重复清除的代码。</p>
+<p>解决方法2 ：智能指针</p>
+<p>先看智能指针<code>autoptr</code>源码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> _<span class="title">Ty</span>&gt;</span></span><br><span class="line"><span class="class">	<span class="title">class</span> <span class="title">auto_ptr</span></span></span><br><span class="line"><span class="class">	&#123;</span>	<span class="comment">// wrap an object pointer to ensure destruction</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">typedef</span> _Ty element_type;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">explicit</span> <span class="title">auto_ptr</span><span class="params">(_Ty * _Ptr = <span class="literal">nullptr</span>)</span> <span class="keyword">noexcept</span></span></span><br><span class="line"><span class="function">		: _<span class="title">Myptr</span><span class="params">(_Ptr)</span></span></span><br><span class="line"><span class="function">		</span>&#123;	<span class="comment">// construct from object pointer</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">auto_ptr</span>(<span class="built_in">auto_ptr</span>&amp; _Right) <span class="keyword">noexcept</span></span><br><span class="line">		: _Myptr(_Right.<span class="built_in">release</span>())</span><br><span class="line">		&#123;	<span class="comment">// construct by assuming pointer from _Right auto_ptr</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">auto_ptr</span>(auto_ptr_ref&lt;_Ty&gt; _Right) <span class="keyword">noexcept</span></span><br><span class="line">		&#123;	<span class="comment">// construct by assuming pointer from _Right auto_ptr_ref</span></span><br><span class="line">		_Ty * _Ptr = _Right._Ref;</span><br><span class="line">		_Right._Ref = <span class="literal">nullptr</span>;	<span class="comment">// release old</span></span><br><span class="line">		_Myptr = _Ptr;	<span class="comment">// reset this</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> _<span class="title">Other</span>&gt;</span></span><br><span class="line"><span class="class">		<span class="title">operator</span> <span class="title">auto_ptr</span>&lt;_Other&gt;() <span class="title">noexcept</span></span></span><br><span class="line"><span class="class">		&#123;</span>	<span class="comment">// convert to compatible auto_ptr</span></span><br><span class="line">		<span class="keyword">return</span> (<span class="built_in">auto_ptr</span>&lt;_Other&gt;(*<span class="keyword">this</span>));</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> _<span class="title">Other</span>&gt;</span></span><br><span class="line"><span class="class">		<span class="title">operator</span> <span class="title">auto_ptr_ref</span>&lt;_Other&gt;() <span class="title">noexcept</span></span></span><br><span class="line"><span class="class">		&#123;</span>	<span class="comment">// convert to compatible auto_ptr_ref</span></span><br><span class="line">		_Other * _Cvtptr = _Myptr;	<span class="comment">// test implicit conversion</span></span><br><span class="line">		auto_ptr_ref&lt;_Other&gt; _Ans(_Cvtptr);</span><br><span class="line">		_Myptr = <span class="literal">nullptr</span>;	<span class="comment">// pass ownership to auto_ptr_ref</span></span><br><span class="line">		<span class="keyword">return</span> (_Ans);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> _<span class="title">Other</span>&gt;</span></span><br><span class="line"><span class="class">		<span class="title">auto_ptr</span>&amp; <span class="title">operator</span>=(<span class="title">auto_ptr</span>&lt;_Other&gt;&amp; _<span class="title">Right</span>) <span class="title">noexcept</span></span></span><br><span class="line"><span class="class">		&#123;</span>	<span class="comment">// assign compatible _Right (assume pointer)</span></span><br><span class="line">		reset(_Right.<span class="built_in">release</span>());</span><br><span class="line">		<span class="keyword">return</span> (*<span class="keyword">this</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> _<span class="title">Other</span>&gt;</span></span><br><span class="line"><span class="class">		<span class="title">auto_ptr</span>(<span class="title">auto_ptr</span>&lt;_Other&gt;&amp; _<span class="title">Right</span>) <span class="title">noexcept</span></span></span><br><span class="line"><span class="class">		:</span> _Myptr(_Right.<span class="built_in">release</span>())</span><br><span class="line">		&#123;	<span class="comment">// construct by assuming pointer from _Right</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">auto_ptr</span>&amp; <span class="keyword">operator</span>=(<span class="built_in">auto_ptr</span>&amp; _Right) <span class="keyword">noexcept</span></span><br><span class="line">		&#123;	<span class="comment">// assign compatible _Right (assume pointer)</span></span><br><span class="line">		reset(_Right.<span class="built_in">release</span>());</span><br><span class="line">		<span class="keyword">return</span> (*<span class="keyword">this</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">auto_ptr</span>&amp; <span class="keyword">operator</span>=(auto_ptr_ref&lt;_Ty&gt; _Right) <span class="keyword">noexcept</span></span><br><span class="line">		&#123;	<span class="comment">// assign compatible _Right._Ref (assume pointer)</span></span><br><span class="line">		_Ty * _Ptr = _Right._Ref;</span><br><span class="line">		_Right._Ref = <span class="number">0</span>;	<span class="comment">// release old</span></span><br><span class="line">		reset(_Ptr);	<span class="comment">// set new</span></span><br><span class="line">		<span class="keyword">return</span> (*<span class="keyword">this</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	~<span class="built_in">auto_ptr</span>() <span class="keyword">noexcept</span></span><br><span class="line">		&#123;	<span class="comment">// destroy the object</span></span><br><span class="line">		<span class="keyword">delete</span> _Myptr;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	_NODISCARD _Ty&amp; <span class="keyword">operator</span>*() <span class="keyword">const</span> <span class="keyword">noexcept</span></span><br><span class="line">		&#123;	<span class="comment">// return designated value</span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">if</span> _ITERATOR_DEBUG_LEVEL == 2</span></span><br><span class="line">		_STL_VERIFY(_Myptr, <span class="string">"auto_ptr not dereferencable"</span>);</span><br><span class="line"> <span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* _ITERATOR_DEBUG_LEVEL == 2 */</span></span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> (*<span class="built_in">get</span>());</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	_NODISCARD _Ty * <span class="keyword">operator</span>-&gt;() <span class="keyword">const</span> <span class="keyword">noexcept</span></span><br><span class="line">		&#123;	<span class="comment">// return pointer to class object</span></span><br><span class="line"> <span class="meta">#<span class="meta-keyword">if</span> _ITERATOR_DEBUG_LEVEL == 2</span></span><br><span class="line">		_STL_VERIFY(_Myptr, <span class="string">"auto_ptr not dereferencable"</span>);</span><br><span class="line"> <span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">/* _ITERATOR_DEBUG_LEVEL == 2 */</span></span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> (<span class="built_in">get</span>());</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">_NODISCARD _Ty * <span class="title">get</span><span class="params">()</span> <span class="keyword">const</span> <span class="keyword">noexcept</span></span></span><br><span class="line"><span class="function">		</span>&#123;	<span class="comment">// return wrapped pointer</span></span><br><span class="line">		<span class="keyword">return</span> (_Myptr);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function">_Ty * <span class="title">release</span><span class="params">()</span> <span class="keyword">noexcept</span></span></span><br><span class="line"><span class="function">		</span>&#123;	<span class="comment">// return wrapped pointer and give up ownership</span></span><br><span class="line">		_Ty * _Tmp = _Myptr;</span><br><span class="line">		_Myptr = <span class="literal">nullptr</span>;</span><br><span class="line">		<span class="keyword">return</span> (_Tmp);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">(_Ty * _Ptr = <span class="literal">nullptr</span>)</span></span></span><br><span class="line"><span class="function">		</span>&#123;	<span class="comment">// destroy designated object and store new pointer</span></span><br><span class="line">		<span class="keyword">if</span> (_Ptr != _Myptr)</span><br><span class="line">			<span class="keyword">delete</span> _Myptr;</span><br><span class="line">		_Myptr = _Ptr;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	_Ty * _Myptr;	<span class="comment">// the wrapped object pointer</span></span><br><span class="line">	&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>隐藏在<code>auto_ptr</code>后的思想是：</p>
+<p>　　用一个对象存储需要被自动释放的资源，然后依靠对象的析构函数来释放资源，这种思想不只是可以运用在指针上，还能用在其它资源的分配和释放上.</p>
+<ol>
+<li><p>参数传递与抛出异常的区别：</p>
+</li>
+<li><p>1 C++规范要求被做为异常抛出的对象必须被复制.因此抛出异常运行速度比参数传递要慢.</p>
+</li>
+<li><p>2 传递参数时，如果是引用类型的形参则不用拷贝，但传异常即使是引用也是需要拷贝的.</p>
+</li>
+<li><p>3 异常捕获时一般不会出现隐式类型转换.但有两种特殊情况：</p>
+</li>
+</ol>
+<p>​       （1）继承类与基类的转换</p>
+<p>​          一个用来捕获基类的catch子句也可以处理派生类类型的异常.</p>
+<p>​         例如在标准C++库（STL）定义的异常类层次中的诊断部分（diagnostics portion ）(参见Effective C++ 条款49).</p>
+<p>​        捕获<code>runtime_errors</code>异常的<code>Catch</code>子句可以捕获<code>range_error</code>类型和<code>overflow_error</code>类型的异常，</p>
+<p>​        可以接收根类<code>exception</code>异常的<code>catch</code>子句能捕获其任意派生类异常</p>
+<p>​       （2） 允许从一个类型化指针<code>（typed pointer）</code>转变成无类型指针<code>（untyped pointer）</code></p>
+<p>所以带有<code>const void*</code> 指针的<code>catch</code>子句能捕获任何类型的指针类型异常</p>
+<ol>
+<li><p>4 传递参数和传递异常间最后一点差别是<code>catch</code>子句匹配顺序总是取决于它们在程序中出现的顺序.</p>
+</li>
+<li><p>对于指针类型的自定义对象在<code>try catch</code>语句中的行为分析</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">string</span> shengao;</span><br><span class="line">	<span class="built_in">string</span> tizhong;</span><br><span class="line">	<span class="built_in">string</span> xingbie;</span><br><span class="line"><span class="keyword">public</span>:	</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">getShengao</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> shengao;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setShengao</span><span class="params">(<span class="built_in">string</span> shengao)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;shengao= shengao;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">getTizhong</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> tizhong;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setTizhong</span><span class="params">(<span class="built_in">string</span> tizhong)</span> </span>&#123;</span><br><span class="line">		 <span class="keyword">this</span>-&gt;tizhong = tizhong;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">getXingbie</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> xingbie;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setXingbie</span><span class="params">(<span class="built_in">string</span> xingbie)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>-&gt;xingbie = xingbie;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="built_in">string</span> <span class="title">mmp</span><span class="params">(<span class="built_in">string</span> fuck)</span> </span>&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"person : mmp"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"shengao:"</span>&lt;&lt;<span class="keyword">this</span>-&gt;shengao&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"tizhong:"</span> &lt;&lt; <span class="keyword">this</span>-&gt;tizhong&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"xingbie:"</span>&lt;&lt; <span class="keyword">this</span>-&gt;xingbie&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> fuck;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function">Person <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> Person* person = <span class="keyword">new</span> Person();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  person-&gt;setShengao(<span class="string">"172cm try block"</span>);</span><br><span class="line">     <span class="built_in">cout</span>&lt;&lt;<span class="string">"try block"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		  <span class="keyword">throw</span> person;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span> (Person* ) &#123;</span><br><span class="line">            person-&gt;setTizhong(<span class="string">"100kg"</span>);</span><br><span class="line">			person-&gt;setXingbie(<span class="string">"女"</span>);</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"catch block"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">             <span class="keyword">return</span> *person;</span><br><span class="line">	&#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">test().mmp(<span class="string">"fuck"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终结果：</p>
+<p><code>try block</code></p>
+<p><code>catch block</code></p>
+<p><code>person : mmp</code></p>
+<p><code>shengao :172cm try lock</code></p>
+<p><code>tizhong: 100kg</code></p>
+<p><code>xingbie:女</code></p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/22/C-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">展开全文 >></a>
+        </p>
+      
+    
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
     <article id="post-Linux常用命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -170,6 +300,9 @@
         
       </header>
     
+      <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->  
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><table>
@@ -553,6 +686,9 @@
         
       </header>
     
+      <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->  
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="因何而来"><a href="#因何而来" class="headerlink" title="因何而来"></a>因何而来</h2><p>作为一名程序初学者，输入和输出是学习技术的不可或缺的两个要素。学习技术不能只停留在学进去，还要讲出来，同大家交流，这样才能真正转化为自己的知识。为了能和广大技术萌新们进行交流，传递新鲜的学习经验，笔者创建了青客空间微信公众号。</p>
@@ -630,6 +766,9 @@
         
       </header>
     
+      <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->  
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​        在排列中寻找一种或全部符合模式的情况均可以用回溯算法来解决。在考虑问题的过程中，如果模式简单则直接进行条件判断，如果模式较为复杂则化繁为简，从部分着手降低问题复杂度，最终采用部分匹配指标代替整体指标。下面的题目是典型的复杂模式匹配问题，从整体出发匹配比较复杂，但最终转化为了部分匹配问题。</p>
@@ -723,6 +862,9 @@
         
       </header>
     
+      <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->  
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在学习Window过程中，参考网上的案例练习的一个小项目，通过调用Window的API实现了与PC同步的时钟。这部分代码包含了大量的Window API，可以很好地熟悉Window的窗口命令函数的使用。当然也能够提高自己的代码理解能力。</p>
@@ -801,6 +943,9 @@
         
       </header>
     
+      <!-- 目录内容 -->
+
+<!-- 目录内容结束 -->  
     <div class="article-entry" itemprop="articleBody">
       
         <p>title: 数据结构与算法学习经验分享（一）基础篇<br>date: 2020-02-26 12:22:57<br>tags:C++/数据结构</p>
@@ -985,6 +1130,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux 操作指令</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
             
             <div class="clearfix"></div>
